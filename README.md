@@ -57,19 +57,34 @@ Its format depends on the chosen `contextType`.
 
 ```json
 {
-  "text": "Can you clarify this section?",
+  "documentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "text": "Can you edit this section?",
   "contextType": "PARAGRAPH",
   "contextReference": "para-2"
 }
 ```
-#### ➡️ Targets paragraph 2 of the document.
+➡️ Targets paragraph 2 of the document.
+
+#### Comment on Sentence
 ```json
 {
+  "documentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "text": "Consider rephrasing this.",
   "contextType": "SENTENCE",
   "contextReference": "sent-5"
 }
 
+
+➡️ Targets the fifth sentence in the document.
+
+```
+#### Comment on Marker
+```json
+{
+  "text": "Revise introduction.",
+  "contextType": "MARKER",
+  "contextReference": "section-intro"
+}
 
 ```
 
