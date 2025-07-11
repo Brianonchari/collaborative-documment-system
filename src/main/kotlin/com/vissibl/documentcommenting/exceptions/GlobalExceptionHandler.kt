@@ -12,23 +12,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
-    private val log = LoggerFactory.getLogger(GlobalExceptionHandler::class.java)
-    private val DEFAULT_ERROR_MESSAGE = "An unexpected error occurred"
+  private val log = LoggerFactory.getLogger(GlobalExceptionHandler::class.java)
+  private val DEFAULT_ERROR_MESSAGE = "An unexpected error occurred"
 
-    @ExceptionHandler(ResourceNotFoundException::class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun onResourceNotFoundException(
-        e: ResourceNotFoundException,
-        request: HttpServletRequest
-    ): ResponseEntity<ProblemDetail> {
-        val errorMessage = e.localizedMessage ?: DEFAULT_ERROR_MESSAGE
-        val problemDetail = createProblemDetail(HttpStatus.NOT_FOUND, errorMessage)
-        return ResponseEntity.status(problemDetail.status).body(problemDetail)
-    }
+  @ExceptionHandler(ResourceNotFoundException::class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  fun onResourceNotFoundException(
+    e: ResourceNotFoundException,
+    request: HttpServletRequest,
+  ): ResponseEntity<ProblemDetail> {
+    val errorMessage = e.localizedMessage ?: DEFAULT_ERROR_MESSAGE
+    val problemDetail = createProblemDetail(HttpStatus.NOT_FOUND, errorMessage)
+    return ResponseEntity.status(problemDetail.status).body(problemDetail)
+  }
 
-    private fun createProblemDetail(status: HttpStatusCode, message: String): ProblemDetail {
-        val problemDetail = ProblemDetail.forStatusAndDetail(status, message)
-        return problemDetail
-    }
-
+  private fun createProblemDetail(status: HttpStatusCode, message: String): ProblemDetail {
+    val problemDetail = ProblemDetail.forStatusAndDetail(status, message)
+    return problemDetail
+  }
 }

@@ -8,11 +8,6 @@ import jakarta.persistence.Enumerated
 
 @Embeddable
 data class CommentContext(
-    @Enumerated(EnumType.STRING)
-    @Column(name = "context_type")
-    val type: ContextType,
-
-    @Column(name = "context_reference")
-    val reference: String
-) {
-}
+  @Enumerated(EnumType.STRING) @Column(name = "context_type") val type: ContextType,
+  @Column(name = "context_reference") val reference: String,
+) {}
