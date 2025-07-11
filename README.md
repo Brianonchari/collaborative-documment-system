@@ -74,10 +74,8 @@ Its format depends on the chosen `contextType`.
   "contextReference": "sent-5"
 }
 ```
-
 ➡️️ Targets the fifth sentence in the document.
 
-```
 #### Comment on Marker
 ```json
 {
