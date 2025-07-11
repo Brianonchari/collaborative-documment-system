@@ -3,8 +3,8 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/document-commenting.git
-cd document-commenting
+git git@github.com:Brianonchari/collaborative-documment-system.git
+cd collaborative-documment-system
 
 ```
 
@@ -73,9 +73,9 @@ Its format depends on the chosen `contextType`.
   "contextType": "SENTENCE",
   "contextReference": "sent-5"
 }
+```
 
-
-➡️ Targets the fifth sentence in the document.
+➡️️ Targets the fifth sentence in the document.
 
 ```
 #### Comment on Marker
@@ -87,4 +87,4 @@ Its format depends on the chosen `contextType`.
 }
 
 ```
-
+➡️ Targets a custom marker or anchor (e.g. "section-intro").
