@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: doc-commenting-system
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db
+    username: user
+    password: passw0rd
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_schema: doc_system
+
+    mvc:
+      problemdetails:
+        enabled: true
+
+    flyway:
+      locations: classpath:db.migrations
+
