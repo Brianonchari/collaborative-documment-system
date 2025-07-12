@@ -79,6 +79,7 @@ class DocumentServiceTest {
     every { DocumentMapper.toEntity(request) } returns document
     every { documentRepository.save(document) } returns document
     every { DocumentMapper.toResponse(saved) } returns response
+
     // when
     val result = documentService.createDocument(request)
 
