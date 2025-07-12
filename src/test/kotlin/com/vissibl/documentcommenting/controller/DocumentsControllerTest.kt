@@ -6,7 +6,6 @@ import com.vissibl.documentcommenting.dto.DocumentResponse
 import com.vissibl.documentcommenting.dto.PagedResponse
 import com.vissibl.documentcommenting.service.DocumentService
 import io.mockk.every
-import java.util.*
 import java.util.UUID
 import kotlin.test.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -94,6 +93,6 @@ class DocumentsControllerTest {
       .perform(get("/v1/documents/1d49f4fe-578a-427b-975d-653722c09d0c"))
       .andExpect(status().isOk)
       .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-      .andExpect(jsonPath("$.id").value(documentId))
+      .andExpect(jsonPath("$.id").value(documentId.toString()))
   }
 }
