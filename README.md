@@ -20,7 +20,6 @@ docker-compose up -d
  ./gradlew bootRun
 ```
 
-## comment-to-document location mapping
 ## 🧠 Comment-to-Document Location Mapping
 
 Each comment is tied to a specific location within a document using two fields:  
@@ -102,3 +101,28 @@ Example: "paragraph-30.sent-5"
 
 ```
 ➡️ Targets a custom marker or anchor (e.g. "section-intro").
+
+
+## Sample API Usage - curl
+create document
+```bash 
+curl -X POST http://localhost:8080/v1/documents \
+  -H "Content-Type: application/json" \
+  -d '{
+        "title": "Sample Document",
+        "content": "This is the full content of the document."
+      }'
+```
+
+add comment 
+```bash
+curl -X POST http://localhost:8080/v1/documents/{documentId}/comments \
+  -H "Content-Type: application/json" \
+  -d '{
+        "documentId": "{documentId}",
+        "text": "This is a comment on sentence 5 of paragraph 30.",
+        "contextType": "SENTENCE",
+        "contextReference": "para-30.sent-5"
+      }'
+
+```
