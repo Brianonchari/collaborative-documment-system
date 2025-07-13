@@ -50,6 +50,12 @@ Its format depends on the chosen `contextType`.
 > ✅ This combination allows the system to anchor a comment to any logical unit in the document.
 
 ---
+if you want to add a comment to a specific sentence inside a specific paragraph, like "paragraph 30, sentence 5",
+then you need to model `hierarchical context references`.
+
+For SENTENCE type, the contextReference uses format:
+``paragraph-{paragraphNumber}.sentence-{sentenceNumber}``
+Example: "paragraph-30.sent-5"
 
 ### 📝 Example Use Cases
 
@@ -73,9 +79,19 @@ Its format depends on the chosen `contextType`.
   "contextType": "SENTENCE",
   "contextReference": "sent-5"
 }
+
 ```
 ➡️️ Targets the fifth sentence in the document.
 
+```json
+{
+  "text": "Consider revising this sentence for clarity.",
+  "contextType": "SENTENCE",
+  "contextReference": "paragraph-30.sentence-5"
+}
+
+```
+➡️️ Targets the fifth sentence in the document on paragraph 30.
 #### Comment on Marker
 ```json
 {
