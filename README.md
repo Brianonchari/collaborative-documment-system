@@ -38,8 +38,8 @@ Each comment is tied to a specific location within a document using two fields:
 
 #### ➤ `contextType`
 Defines **how** to interpret the location of the comment:
-- `PARAGRAPH`: Refers to a specific paragraph (e.g. `"para-1"`)
-- `SENTENCE`: Refers to a specific sentence (e.g. `"sent-3"`)
+- `PARAGRAPH`: Refers to a specific paragraph (e.g. `"paragrah-1"`)
+- `SENTENCE`: Refers to a specific sentence (e.g. `"sentence-3"`)
 - `MARKER`: Refers to a predefined marker or anchor in the content (e.g. `"section-intro"`)
 
 #### ➤ `contextReference`
