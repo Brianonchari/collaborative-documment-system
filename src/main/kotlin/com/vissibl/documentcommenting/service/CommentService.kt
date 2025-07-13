@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service
 class CommentService(
   private val commentRepository: CommentsRepository,
   private val documentRepository: DocumentRepository,
-  private val documentService: DocumentService,
 ) {
   private val logger = LoggerFactory.getLogger(javaClass)
 

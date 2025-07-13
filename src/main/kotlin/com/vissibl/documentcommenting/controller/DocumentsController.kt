@@ -33,7 +33,7 @@ class DocumentsController(
   @ApiResponse(responseCode = "201")
   @PostMapping
   fun createDocument(
-    @RequestBody request: CreateDocumentRequest
+    @RequestBody @Valid request: CreateDocumentRequest
   ): ResponseEntity<DocumentResponse> =
     ResponseEntity.status(201).body(documentService.createDocument(request))
 
@@ -48,7 +48,7 @@ class DocumentsController(
   @PutMapping("/{id}")
   fun updateDocument(
     @PathVariable id: UUID,
-    @RequestBody @Valid request: CreateDocumentRequest,
+    @RequestBody @Valid request: UpdateDocumentRequest,
   ): ResponseEntity<DocumentResponse> =
     ResponseEntity.ok(documentService.updateDocument(id, request))
 

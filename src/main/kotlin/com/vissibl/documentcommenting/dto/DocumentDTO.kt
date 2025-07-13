@@ -4,6 +4,8 @@ import java.util.UUID
 
 data class CreateDocumentRequest(val title: String, val content: String)
 
+data class UpdateDocumentRequest(val title: String, val content: String)
+
 data class DocumentResponse(val id: UUID, val title: String, val content: String)
 
 data class PagedResponse<T>(

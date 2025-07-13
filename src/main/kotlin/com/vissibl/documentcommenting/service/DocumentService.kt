@@ -3,6 +3,7 @@ package com.vissibl.documentcommenting.service
 import com.vissibl.documentcommenting.dto.CreateDocumentRequest
 import com.vissibl.documentcommenting.dto.DocumentResponse
 import com.vissibl.documentcommenting.dto.PagedResponse
+import com.vissibl.documentcommenting.dto.UpdateDocumentRequest
 import com.vissibl.documentcommenting.exceptions.ResourceNotFoundException
 import com.vissibl.documentcommenting.mappers.DocumentMapper
 import com.vissibl.documentcommenting.model.Document
@@ -41,22 +42,16 @@ class DocumentService(private val documentRepository: DocumentRepository) {
 
   fun getById(id: UUID): Document {
     return documentRepository.findByIdOrNull(id)
-      ?: throw ResourceNotFoundException("Document not found: $id")
+      ?: throw ResourceNotFoundException("Document not found with id: $id")
   }
 
   fun getDocumentById(id: UUID): DocumentResponse {
-    var document =
-      documentRepository.findById(id).orElseThrow { ->
-        ResourceNotFoundException("Document with id $id not found")
-      }
+    val document = getById(id)
     return DocumentMapper.toResponse(document)
   }
 
-  fun updateDocument(id: UUID, request: CreateDocumentRequest): DocumentResponse {
-    val existing =
-      documentRepository.findById(id).orElseThrow { ->
-        ResourceNotFoundException("Document with id $id not found")
-      }
+  fun updateDocument(id: UUID, request: UpdateDocumentRequest): DocumentResponse {
+    val existing = getById(id)
 
     val updated =
       existing.copy(title = request.title, content = request.content, updatedAt = Instant.now())
@@ -66,10 +61,7 @@ class DocumentService(private val documentRepository: DocumentRepository) {
   }
 
   fun deleteDocument(id: UUID) {
-    val document =
-      documentRepository.findById(id).orElseThrow { ->
-        ResourceNotFoundException("Document with id $id not found")
-      }
+    val document = getById(id)
     documentRepository.delete(document)
     logger.info("Document deleted: $id")
   }

@@ -3,10 +3,11 @@ package com.vissibl.documentcommenting.mappers
 import com.vissibl.documentcommenting.dto.CreateDocumentRequest
 import com.vissibl.documentcommenting.dto.DocumentResponse
 import com.vissibl.documentcommenting.model.Document
+import java.time.Instant
 
 object DocumentMapper {
   fun toEntity(req: CreateDocumentRequest): Document {
-    return Document(title = req.title, content = req.content)
+    return Document(title = req.title, content = req.content, updatedAt = Instant.now())
   }
 
   fun toResponse(doc: Document): DocumentResponse {
