@@ -71,7 +71,7 @@ class DocumentsController(
     return ResponseEntity.status(201).body(comment)
   }
 
-  @Operation(summary = "Get paginated list of a document")
+  @Operation(summary = "Get paginated list of comments")
   @GetMapping("/{id}/comments")
   fun getComments(
     @PathVariable id: UUID,

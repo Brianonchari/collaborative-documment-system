@@ -9,16 +9,22 @@ import com.vissibl.documentcommenting.dto.UpdateDocumentRequest
 import com.vissibl.documentcommenting.enums.ContextType
 import com.vissibl.documentcommenting.exceptions.ResourceNotFoundException
 import com.vissibl.documentcommenting.model.Document
+import com.vissibl.documentcommenting.repository.DocumentRepository
 import com.vissibl.documentcommenting.service.CommentService
 import com.vissibl.documentcommenting.service.DocumentService
 import io.mockk.Runs
+import io.mockk.clearAllMocks
 import io.mockk.every
+import io.mockk.impl.annotations.MockK
 import io.mockk.just
 import java.time.Instant
+import java.util.Optional
 import java.util.UUID
 import kotlin.test.Test
+import org.junit.jupiter.api.AfterEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
@@ -29,18 +35,16 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
-
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(DocumentsController::class)
 @Import(MockBeansConfig::class)
 class DocumentsControllerTest {
-  @Autowired lateinit var mockMvc: MockMvc
-
-  @Autowired lateinit var documentService: DocumentService
-
-  @Autowired lateinit var commentsService: CommentService
+   @Autowired
+   lateinit var mockMvc: MockMvc
+    @Autowired lateinit var documentService: DocumentService
+   @Autowired lateinit var commentsService: CommentService
 
   private val objectMapper = ObjectMapper()
+
 
   @Test
   fun `given GET documents, when request is made, return 200 OK`() {
@@ -179,7 +183,7 @@ class DocumentsControllerTest {
           )
         ),
       )
-
+  //  every { documentRepository.findById(documentId) } returns Optional.of(document)
     every { documentService.getById(documentId) } returns document
     every { commentsService.getCommentsForDocument(documentId, 0, 10) } returns pagedResponse
 
